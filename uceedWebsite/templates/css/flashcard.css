@@ -1,0 +1,58 @@
+.card-container, .front, .back {
+    width: 40rem;
+    height: 85vh;
+}
+body{
+    overflow:hidden;
+    height: 100%;
+}
+html{height: 100%;}
+#content{height: 100%;}
+
+.card-container {
+    margin: 5rem;
+}
+.front, .back {
+    box-sizing: border-box;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .25);
+
+    font-family: BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+/* front side bg is green gradient */ .front {
+    background-image: linear-gradient(to right bottom, #2ecc71, #229955);
+}
+/* back side bg is orange gradient */ .back {
+    background-image: linear-gradient(to right bottom, #f1c40f, #e67e22);
+}
+
+.card-container {
+    position: relative;
+    margin: 0 auto;
+    perspective: 75rem;
+}
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition: transform .8s ease;
+}
+.back {
+    transform: rotateY(180deg);
+}
+
+.ajs-message.ajs-custom { 
+    color: green; 
+    width: 400px;
+    padding: 2px;
+    margin: 5px;
+    background:#e6e6ff;
+    border-color: green;
+}

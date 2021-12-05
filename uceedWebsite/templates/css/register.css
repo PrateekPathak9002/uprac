@@ -1,0 +1,12 @@
+input{
+   border-style: solid;
+   border-radius: 5px;
+   padding: 5px;
+   transition: 0.2s;
+   margin: 4px;
+}
+input:focus{
+   outline-style: solid;
+   outline-width: 4px;
+   outline-color: #7fbdff;
+}

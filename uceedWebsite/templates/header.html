@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <base href="/">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/swifty-css@1.0.2/swifty.css">
+
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+    <title>Title</title>
+</head>
+<body style="padding:10px;">
+
+    {% block content %}
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Uceed Papers</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item home">
+            <a class="nav-link " href="#">Home </a>
+        </li>
+        <li class="nav-item about">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item contact">
+            <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item flashcard">
+            <a class="nav-link" href="/flashcard">Flashcards</a>
+        </li>
+        <li class="nav-item flashcard">
+            <a class="nav-link" href="/download">Download</a>
+        </li>
+    </ul>
+    {% if user.is_authenticated %}
+        {% if request.path == '/' %}
+        <a class="nav-link welcome" >Welcome, {{user.username}}</a>
+        {%endif%}
+        <a class="nav-link" href="/logout"> <button class="sw-btn-outline-danger">Logout</button>  </a>
+
+        {%if user.username == "admin"%}
+            <a class="nav-link" href="/admin"> <button class="sw-btn-outline-primary">Admin Console</button> </a>
+        {% endif %}
+
+        {% if user.socialaccount_set.all.0.get_avatar_url == none%}
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU" style='width: 5%; height: 5%;' alt="pp" class="rounded-circle pull-right" onclick="window.location='/profile'">
+
+        {%else%}
+        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style='width: 5%; height: 5%;' alt="pp" class="rounded-circle pull-right" onclick="window.location='/profile'">
+        {%endif%}
+
+    {% else %}
+        <a href='/login'><button id='logIn' class="sw-btn-outline-success">Log In</button></a> &nbsp;&nbsp;
+        <a href="/register"><button id="signUp" class="sw-btn-solid-primary"> Sign Up </button> </a>
+    {% endif %}
+    </div>
+</nav>
+
+<script>
+    setTimeout(()=>{
+        $('.welcome').fadeOut('slow');
+        $('.welcome').html()
+    },3000)
+</script>
+
+</body>
+</html>
+
+{% endblock %}
+
+</body>
+</html>

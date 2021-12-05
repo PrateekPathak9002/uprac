@@ -1,0 +1,116 @@
+  <title>Flashcards</title>
+{%include 'header.html' %}
+
+<style>
+{%include 'css/flashcard.css' %}
+{%include 'css/header.css' %}
+
+
+</style>
+    {% if user.is_authenticated%}
+<div id="content" style="width: 100%; position: relative;"></div>
+
+<i class="fas fa-caret-right" style="position: absolute; top: 20%; left: 95%; font-size: 50px;" id="next"></i>
+
+<i class="fas fa-caret-left" style="position: absolute; top: 20%; left:5%; font-size: 50px;" id="back"></i>
+
+
+<script>
+    let myData = {%include 'data.json'%}
+    let frontSideFront = true
+    let cardNum = 0
+    let totalCards = 2
+
+    document.getElementsByClassName('flashcard')[0].className = 'active'
+
+    for(var i = 0 ; i < totalCards ; i++ ){
+        frontSideFront = true
+        $("#content").append(`
+           <div class="card-container" id="${i}">
+                <div class="front">${myData['questions'][i]}</div>
+                <div class="back">${myData['answers'][i]}</div>
+           </div>
+           `)
+    }
+
+for(var m = 0 ; m < totalCards ; m++ ){
+            if (m !== cardNum) {
+                $(`#${m}`).css('visibility', 'hidden');
+            }
+        }
+
+        $("#next").click(function (e) {
+
+            if (cardNum !== totalCards-1) {
+                 $(".front").css({/*Turn the card around to the front */
+                    "transform": "rotateY(0deg)",
+                })
+                $(".back").css({
+                    "transform": "rotateY(180deg)",
+                })
+
+                setTimeout(()=>{
+                    $(`#${cardNum}`).css('visibility', 'hidden');
+                    $(`#${cardNum}`).css('position', 'absolute');
+                    cardNum++
+
+                    $(`#${cardNum}`).css('visibility', 'visible');
+                    $(`#${cardNum}`).css('position', 'relative');
+                },290)
+                
+               
+            }else {
+                 alertify.set('notifier','position', 'bottom-center');
+                 alertify.notify('This is the last flashcard . Congratulations 👏🏼!','custom',3);
+            }
+         
+
+        });
+
+        $("#back").click(function (e) {
+            if (cardNum !== 0) {
+                $(`#${cardNum}`).css('visibility', 'hidden');
+                $(`#${cardNum}`).css('position', 'absolute');
+                cardNum--
+
+                $(".front").css({ /*Turn the card around to the front */
+                    "transform": "rotateY(0deg)",
+                })
+                $(".back").css({
+                    "transform": "rotateY(180deg)",
+                })
+                $(`#${cardNum}`).css('visibility', 'visible');
+                $(`#${cardNum}`).css('position', 'relative');
+            }else {
+                 alertify.set('notifier','position', 'bottom-center');
+                 alertify.notify('This is the first flashcard . Keep learning 🙂','custom',3);
+            }
+        });
+
+        $(".card-container").click((e)=>{
+            if(frontSideFront){
+                frontSideFront = false
+                $(".front").css({
+                    "transform": "rotateY(-180deg)",
+                })
+                $(".back").css({
+                    "transform": "rotateY(0deg)",
+                })
+            }else{
+                frontSideFront = true
+                $(".front").css({
+                    "transform": "rotateY(0deg)",
+                })
+                $(".back").css({
+                    "transform": "rotateY(180deg)",
+                })
+            }
+        })
+
+</script>
+{% else %}
+<script>
+    document.getElementsByClassName('flashcard')[0].className = 'active'
+</script>
+<h2 class="text-center" style="margin: 35vh;">Please login to view flashcards for free</h2>
+{%endif%}

@@ -1,0 +1,62 @@
+ <title>Download</title>
+ {%include 'header.html'%}
+ <style>
+ 	{%include 'css/header.css'%}
+ </style>
+
+    {% if user.is_authenticated%}
+
+<div class="card" style="width: 18rem;margin: 20px;display: inline-block;">
+  <div class="card-body">
+    <h5 class="card-title"> UCEED 2021</h5>
+    <p class="card-text">
+    	<a href="https://drive.google.com/file/d/1f3wZZSZ3Hvr0ZcwYxoF53AZjXiQtELse/view?usp=sharing" download="uceed-2021-qp" target="_blank" rel="noopener noreferrer">Question paper</a> <br>
+    	<a href="https://drive.google.com/file/d/1Q1w2dYAG-m9VXVfYbtHik2WxF3V0zsg-/view?usp=sharing" download="uceed-2021-ak" target="_blank" rel="noopener noreferrer">Answer key</a> 
+    </p>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;margin: 20px;display: inline-block;">
+  <div class="card-body">
+    <h5 class="card-title"> UCEED 2020</h5>
+    <p class="card-text">
+    	<a href="https://drive.google.com/file/d/1uMsiWpNEM68Zq1AZrNw10F0Xz-pEe0pO/view?usp=sharing" download="uceed-2020-qp" target="_blank" rel="noopener noreferrer">Question paper</a> <br>
+    	<a href="https://drive.google.com/file/d/1DS3Ho86Na080ZR9ON34_gQdfTvFmYrz-/view?usp=sharing" download="uceed-2020-ak" target="_blank" rel="noopener noreferrer">Answer key</a> 
+    </p>
+  </div>
+</div>
+
+
+<div class="card" style="width: 18rem;margin: 20px;display: inline-block;">
+  <div class="card-body">
+    <h5 class="card-title"> UCEED 2019</h5>
+    <p class="card-text">
+    	<a href="https://drive.google.com/file/d/1qoM1oaclgpGoncmMB1a_BT-Ha-njA-gX/view?usp=sharing" download="uceed-2019-qp" target="_blank" rel="noopener noreferrer">Question paper</a> <br>
+    	<a href="https://drive.google.com/file/d/1FO8FrWjqVZ-J4wuUW7n8ojKgVav6Aznd/view?usp=sharing" download="uceed-2019-ak" target="_blank" rel="noopener noreferrer">Answer key</a> 
+    </p>
+  </div>
+</div>
+
+
+
+<div class="card" style="width: 18rem;margin: 20px;display: inline-block;">
+  <div class="card-body">
+    <h5 class="card-title"> UCEED 2018</h5>
+    <p class="card-text">
+    	<a href="https://drive.google.com/file/d/1Hq9lefW9-xPPVi9m_Xoz20nuGWM8zk4M/view?usp=sharing" download="uceed-2018-qp" target="_blank" rel="noopener noreferrer">Question paper</a> <br>
+    	<a href="https://drive.google.com/file/d/1EBtx40IqKGaqOUAt45p9TCZOGCRHz-Em/view?usp=sharing" download="uceed-2018-ak" target="_blank" rel="noopener noreferrer">Answer key</a> 
+    </p>
+  </div>
+</div>
+
+<script>
+	document.getElementsByClassName('home')[0].className = 'active'
+</script>
+
+{% else %}
+<script>
+    document.getElementsByClassName('flashcard')[0].className = 'active'
+</script>
+
+<h2 class="text-center" style="margin: 35vh;">Please login to view the previous year download papers for free</h2>
+{%endif%}

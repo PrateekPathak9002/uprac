@@ -1,0 +1,43 @@
+    {%if user.is_authenticated%}
+
+<title>My profile</title>
+
+ {%include 'header.html'%}
+
+ <style>
+      {%include 'css/header.css'%}
+ </style>
+
+<br>
+
+<h2 style="display: inline-block;">Username: </h2> <p style="display: inline-block;font-size: 25px;">{{ user.username }}</p>
+
+<br>
+
+<h2 style="display: inline-block;">Email: </h2> <p style="display: inline-block; font-size: 25px;">{{ user.email }}</p>
+<br>
+<h2 style="display: inline-block;">Password:</h2><p style="display: inline-block; font-size: 25px;">We do not have access to your password . You may change it <a href="profile/password/">here</a> .</p> 
+
+{%if not user.socialaccount_set.all.0.extra_data.name == none%}
+<br>
+<h2 style="display: inline-block;">Date joined: </h2> <p style="display: inline-block;font-size: 25px;">{{ user.socialaccount_set.all.0.date_joined }}</p>
+
+<br>
+<h2 style="display: inline-block;">Full name: </h2> <p style="display: inline-block;font-size: 25px;">{{ user.socialaccount_set.all.0.extra_data.name }}</p>
+
+<br>
+<h2 style="display: inline-block;">Last login: </h2> <p style="display: inline-block;font-size: 25px;">{{ user.socialaccount_set.all.0.last_login }}</p>
+{%endif%}
+
+     {%else%}
+
+<title>Access denied</title>
+{%include 'header.html'%}
+ <style>
+      {%include 'css/header.css'%}
+      {%include 'css/register.css'%}
+ </style>
+
+<p class="text-center" style="font-size: 30px;">Please log in to view this page.</p>
+
+{%endif%}

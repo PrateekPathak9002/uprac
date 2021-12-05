@@ -1,0 +1,15 @@
+<!--The django refrence bookmark folder in chrome has all the tutorials you need to make a website.-->
+<title>Home</title>
+ {%include 'header.html'%}
+ <style>
+      {%include 'css/header.css'%}
+ </style>
+    <h1 id="h2w" style="color: blue;">Hi</h1>
+    <button type="button" class="btn btn-primary" id="test">Primary</button>
+
+    <script>
+        document.getElementsByClassName('home')[0].className = 'active'
+        $("#test").click(function (e) {
+            $("#h2w").html("Button has been clicked!")
+        });
+    </script>
